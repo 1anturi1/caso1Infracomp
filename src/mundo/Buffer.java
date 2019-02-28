@@ -2,62 +2,78 @@ package mundo;
 
 import java.util.ArrayList;
 
+
 public class Buffer {
 
-	private ArrayList<Integer> buff;
+	private ArrayList<Mensaje> buff;
 	private int n;
 	Object lleno;
 	Object vacio;
-	
-	
-	public Buffer(int n) 
+	public int cantidadClientes ;
+
+	public Buffer(int n, int numClientes) 
 	{
 		this.n = n;
-		buff = new ArrayList<Integer>();
+		buff = new ArrayList<Mensaje>();
 		lleno = new Object();
 		vacio = new Object();
+		cantidadClientes = numClientes ;
 	}
-	
-	public void almacenar(Integer i) {
+
+
+	public void almacenar(Mensaje pMsj) {
+
 		synchronized (lleno) {
-			while (buff.size() == n) {
+			while(buff.size() == n)
+			{
 				try {
 					System.out.println("Buffer lleno");
 					lleno.wait();
 				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
 		}
+
 		synchronized (this) {
-			buff.add(i);
+			buff.add(pMsj) ;
 		}
 		synchronized (vacio) {
 			vacio.notify();
 		}
+
+
 	}
-	
-	
-	public Integer retirar() {
-		synchronized (vacio) 
-		{
-			while (buff.size() == 0) {
-				try {
-					System.out.println("Buffer vacio");
-					vacio.wait();
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-		Integer i;
+
+	public Mensaje responder() {
+
+		Mensaje i = null ;
+
 		synchronized (this) {
-			i = buff.remove(0);
-		}
+			if(buff.size() != 0)
+			{
+				i = buff.remove(0) ;
+			}
+		}		
 		synchronized (lleno) {
 			lleno.notify();
 		}
-		return i;
+
+		return i ;
+	}
+
+	
+	public void saleCliente()
+	{
+		cantidadClientes -- ;
+	}
+
+	/**
+	 * @return the cantidadClientes
+	 */
+	public int getCantidadClientes() {
+		return cantidadClientes;
 	}
 
 }
