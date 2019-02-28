@@ -1,4 +1,4 @@
-clientes:3
+clientes:9
 servidores :1
-nClientes:2
+nClientes:6
 buffer:1

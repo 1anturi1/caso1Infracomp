@@ -28,15 +28,16 @@ public class Servidor extends Thread {
 			{
 				synchronized (msj) {
 					msj.setRta();
-					msj.notify();
 					System.out.println("Mensaje " + msj.getMsj() +" respondido por el servidor con el id: " + id);
-					this.yield();
+					msj.notify();
+					
 				}
 
 			}
 			
 			if(buff.getCantidadClientes()== 0)
 			{
+				System.out.println("El servidor con id "+id+ " se despide dado que no hay mas clientes");
 				break ;
 			}
 			

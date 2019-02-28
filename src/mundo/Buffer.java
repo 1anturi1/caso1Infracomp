@@ -24,14 +24,13 @@ public class Buffer {
 	public void almacenar(Mensaje pMsj) {
 
 		synchronized (lleno) {
-			System.out.println("Tamaño " +buff.size());
+			
 			while(buff.size() == n)
 			{
 				try {
-					System.out.println("Buffer lleno");
+					System.out.println("El mensaje "+ pMsj.msj +" fue mandado a dormir porque el buffer está lleno");
 					lleno.wait();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -39,6 +38,7 @@ public class Buffer {
 
 		synchronized (this) {
 			buff.add(pMsj) ;
+			System.out.println("El mensaje "+ pMsj.msj +" fue añadido");
 		}
 		synchronized (vacio) {
 			vacio.notify();
@@ -54,7 +54,9 @@ public class Buffer {
 		synchronized (this) {
 			if(buff.size() != 0)
 			{
+				
 				i = buff.remove(0) ;
+				System.out.println("El mensaje "+ i.msj +" fue retirado del buffer");
 			}
 		}		
 		synchronized (lleno) {

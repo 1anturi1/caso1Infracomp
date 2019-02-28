@@ -38,7 +38,6 @@ public class Main {
 			        if((cadena = b.readLine())!=null && cadena.contains(":")) {
 			            buffer= Integer.parseInt(cadena.split(":")[1]);
 			        }
-			        System.out.println(buffer);
 			        b.close();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
