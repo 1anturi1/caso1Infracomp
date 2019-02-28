@@ -49,7 +49,7 @@ public class Main {
 		ArrayList<Cliente> listaClie = new ArrayList<Cliente>();
 		ArrayList<Servidor> listaSer = new ArrayList<Servidor>();
 		
-		Buffer  buff = new Buffer(buffer, 20) ;				
+		Buffer  buff = new Buffer(buffer, clientes) ;				
 		
 		for( int j = 0 ; j < clientes ; j++ )
 		{

@@ -67,6 +67,7 @@ public class Buffer {
 	public void saleCliente()
 	{
 		cantidadClientes -- ;
+		
 	}
 
 	/**

@@ -5,20 +5,25 @@ public class Cliente extends Thread {
 
 	public int id ;
 	private Buffer buff ;
-	private int numMensajes;
+	private int maxMensajes;
 
 	public Cliente(int pId, Buffer pBuff, int pNumMensajes)
 	{
 		this.id = pId ;
 		this.buff = pBuff ;
-		this.numMensajes = pNumMensajes ;
+		this.maxMensajes = pNumMensajes ;
 	}
 
 	public void run()
 	{
-
 		
-		for(int i =0 ; i< numMensajes ; i++)
+		int numeroMensajes = (int)(Math.random()*100)% maxMensajes;
+		if(numeroMensajes == 0)
+		{
+			numeroMensajes = 1;
+		}
+		System.out.println("Soy el cliente con id: " + id+ " y tengo que enviar "+ numeroMensajes);
+		for(int i =0 ; i< numeroMensajes ; i++)
 		{
 			int num = (int)(Math.random()*100) ;
 
@@ -38,6 +43,7 @@ public class Cliente extends Thread {
 			}
 		}
 		buff.saleCliente();
+		System.out.println("Sali y soy el cliente con id = " +id);
 
 	}
 
