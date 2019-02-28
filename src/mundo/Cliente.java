@@ -29,12 +29,13 @@ public class Cliente extends Thread {
 
 			Mensaje msj = new Mensaje(num) ;
 
-			System.out.println("Mensaje " + msj.getMsj() + " depositado por el cliente con id= " + id);
-
+			
+			
 			synchronized (msj) {
 
 				try {
 					buff.almacenar(msj);
+					System.out.println("Mensaje " + msj.getMsj() + " depositado por el cliente con id= " + id);
 					msj.wait();
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block

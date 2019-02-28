@@ -1,4 +1,4 @@
 clientes:3
-servidores :9
-nClientes:18
-buffer:4
+servidores :1
+nClientes:2
+buffer:1

@@ -46,12 +46,7 @@ public class Mensaje {
 	}
 
 
-	/**
-	 * @param msj the msj to set
-	 */
-	public void setMsj(int msj) {
-		this.msj = msj;
-	}
+	
 	
 	
 	

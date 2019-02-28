@@ -14,7 +14,7 @@ public class Buffer {
 	public Buffer(int n, int numClientes) 
 	{
 		this.n = n;
-		buff = new ArrayList<Mensaje>();
+		buff = new ArrayList<Mensaje>(n);
 		lleno = new Object();
 		vacio = new Object();
 		cantidadClientes = numClientes ;
@@ -24,6 +24,7 @@ public class Buffer {
 	public void almacenar(Mensaje pMsj) {
 
 		synchronized (lleno) {
+			System.out.println("Tamaño " +buff.size());
 			while(buff.size() == n)
 			{
 				try {
